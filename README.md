@@ -1,3 +1,3 @@
 # Lead_Lag-Pump-Station
 
-![Pump Station Demo](PLC/PumpStationPLC.gif)
+![Pump Station Demo](PLC/LeadLag_Pump_PLC.gif)
