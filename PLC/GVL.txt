@@ -1,0 +1,13 @@
+VAR_GLOBAL
+    AutoMode: BOOL := TRUE;
+    Pump1_Coil: BOOL;
+    Pump2_Coil: BOOL;
+    DischargeValve: BOOL;
+    Level_PV: REAL;         
+    Level_Lead_SP: REAL := 60.0; 
+    Level_Lag_SP: REAL := 85.0; 
+    Level_Stop_SP: REAL := 15.0; 
+    
+    // Diagnostics / Tracking
+    LeadPumpID: INT := 1;     // Shows 1 or 2 to indicate active Lead pump
+END_VAR
