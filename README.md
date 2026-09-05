@@ -32,6 +32,3 @@ Below is a demonstration of the current PLC logic and Human-Machine Interface (H
 * **Modbus Integration:** Establishing Modbus communication to allow the virtual PLC to send and receive live tag data.
 * **Telemetry Logging:** Setting up data extraction pipelines for critical system metrics (e.g., pump runtimes, fault frequencies, flow rates).
 * **Power BI Dashboarding:** Building a high-level analytics dashboard in Power BI to visualize the telemetry data for predictive maintenance and operational reporting.
-
-## How to Run
-*(Add brief instructions here later on how someone can clone the repo and open the CODESYS project on their own machine)*
