@@ -1,0 +1,57 @@
+FUNCTION_BLOCK Lead_Lag_Control
+VAR_INPUT
+    Level_PV: REAL;       
+    Lead_Start_SP: REAL := 60; 
+    Lag_Start_SP: REAL := 85; 
+    Stop_SP: REAL := 10; 
+END_VAR
+
+VAR_OUTPUT
+    Pump1_Cmd: BOOL; // Pump 1
+    Pump2_Cmd: BOOL; // Pump 2
+	LeadPumpID: INT := 1;   // 1 = Pump 1 is Lead, 2 = Pump 2 is Lead
+END_VAR
+
+VAR
+    LeadRunning: BOOL := FALSE;
+    LagRunning: BOOL := FALSE;
+    PrevAllOff: BOOL := TRUE;
+END_VAR
+
+IMPLEMENTATION
+
+// Determine if Lead and Lag pumps need to run
+IF Level_PV >= Lead_Start_SP THEN
+    LeadRunning := TRUE;
+END_IF
+
+IF Level_PV >= Lag_Start_SP THEN
+    LagRunning := TRUE;
+END_IF
+
+IF Level_PV <= Stop_SP THEN
+    LeadRunning := FALSE;
+    LagRunning  := FALSE;
+END_IF
+
+
+// Detect falling edge: when pumps were running and just turned off
+IF (NOT LeadRunning AND NOT LagRunning) AND (NOT PrevAllOff) THEN
+    // swap after a cycle
+    IF LeadPumpID = 1 THEN
+        LeadPumpID := 2;
+    ELSE
+        LeadPumpID := 1;
+    END_IF
+END_IF
+
+PrevAllOff := (NOT LeadRunning AND NOT LagRunning);
+
+// To make sure both pumps used simultaneously and not burn any motors out sooner
+IF LeadPumpID = 1 THEN
+    Pump1_Cmd := LeadRunning;
+    Pump2_Cmd := LagRunning;
+ELSE
+    Pump1_Cmd := LagRunning;
+    Pump2_Cmd := LeadRunning;
+END_IF

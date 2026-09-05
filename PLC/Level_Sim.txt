@@ -1,0 +1,29 @@
+FUNCTION_BLOCK Level_Sim
+VAR_INPUT
+    Pump1_Active: BOOL;
+    Pump2_Active: BOOL;
+END_VAR
+VAR_OUTPUT
+    Level: REAL := 30.0;
+END_VAR
+
+IMPLEMENTATION
+
+// Natural Inflow (rain/drainage constantly entering)
+Level := Level + 0.15;
+
+// Outflow
+IF Pump1_Active THEN
+    Level := Level - 0.25;
+END_IF
+
+IF Pump2_Active THEN
+    Level := Level - 0.25;
+END_IF
+
+
+IF Level > 100.0 THEN
+    Level := 100.0;
+ELSIF Level < 0.0 THEN
+    Level := 0.0;
+END_IF

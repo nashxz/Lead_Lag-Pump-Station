@@ -1,0 +1,30 @@
+PROGRAM PLC_PRG
+VAR
+    LevelSim01: Level_Sim;
+    LeadLag01: Lead_Lag_Control;
+END_VAR
+
+IMPLEMENTATION
+
+LevelSim01(
+    Pump1_Active := GVL.Pump1_Coil, 
+    Pump2_Active := GVL.Pump2_Coil, 
+    Level => GVL.Level_PV
+);
+
+IF GVL.AutoMode THEN
+    LeadLag01(
+        Level_PV       := GVL.Level_PV,
+        Lead_Start_SP  := GVL.Level_Lead_SP,
+        Lag_Start_SP   := GVL.Level_Lag_SP,
+        Stop_SP        := GVL.Level_Stop_SP,
+        Pump1_Cmd      => GVL.Pump1_Coil,
+        Pump2_Cmd      => GVL.Pump2_Coil
+    );
+    
+    // Active Lead Pump
+    GVL.LeadPumpID := LeadLag01.LeadPumpID;
+    
+    // Open discharge line when either pump runs
+    GVL.DischargeValve := GVL.Pump1_Coil OR GVL.Pump2_Coil;
+END_IF
