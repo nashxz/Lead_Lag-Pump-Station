@@ -9,13 +9,6 @@ This project is a comprehensive simulation and control system for a Lead-Lag Pum
 
 This repository documents the end-to-end engineering of the system, from initial electrical/layout drafting to PLC logic programming, and eventually progressing to SCADA/dashboard integrations.
 
-## Project Demonstration
-Below is a demonstration of the current PLC logic and Human-Machine Interface (HMI) built in CODESYS:
-
-<p align="center">
-  <img src="PLC/PumpStationPLC.gif" alt="CODESYS Pump Station Demo" width="750">
-</p>
-
 ## Tech Stack & Tools
 * **PLC Programming:** CODESYS (IEC 61131-3 Standard)
 * **Design & Drafting:** AutoCAD
