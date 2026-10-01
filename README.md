@@ -4,7 +4,7 @@
 ![Pump Station Demo](PLC/LeadLag_Pump_PLC.gif)
 
 ### 📡 Live IT/OT SCADA Telemetry (Python Modbus Client)
-![Live IT/OT SCADA Integration](pump_station_python.gif)
+![Live IT/OT SCADA Integration](PLC/pump_station_python.gif)
 
 ## Overview
 This project is a comprehensive industrial automation and IT/OT integration simulation for a dual-pump lift station. In municipal water and industrial fluid systems, lead-lag configurations are critical for balancing the runtime of multiple pumps, reducing mechanical wear, and ensuring system redundancy.
